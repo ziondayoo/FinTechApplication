@@ -1,6 +1,8 @@
-﻿namespace FinTechApplication.Services.Implementation
+﻿using FinTechApplication.Services.Interfaces;
+
+namespace FinTechApplication.Services.Implementation
 {
-    public class AccountService
+    public class AccountService : IAccountService
     {
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace FinTechApplication.Infrastructure.Repositories.Implementation
+﻿using FinTechApplication.Infrastructure.Repositories.Interface;
+
+namespace FinTechApplication.Infrastructure.Repositories.Implementation
 {
-    public class TransactionRepository
+    public class TransactionRepository : ITransactionRepository
     {
     }
 }

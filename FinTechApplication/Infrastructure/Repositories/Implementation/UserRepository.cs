@@ -1,9 +1,10 @@
 ﻿using FinTechApplication.Infrastructure.Database;
+using FinTechApplication.Infrastructure.Repositories.Interface;
 using FinTechApplication.Models;
 
 namespace FinTechApplication.Infrastructure.Repositories.Implementation
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly AppDbContext _ctx;
 

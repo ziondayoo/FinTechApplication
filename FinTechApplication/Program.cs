@@ -1,3 +1,18 @@
+using FinTechApp.Infrastructure.Settings;
+using FinTechApp.Services.Implementation;
+using FinTechApplication.Infrastructure;
+using FinTechApplication.Infrastructure.Database;
+using FinTechApplication.Infrastructure.Repositories.Implementation;
+using FinTechApplication.Infrastructure.Repositories.Interface;
+using FinTechApplication.Models;
+using FinTechApplication.Services.Implementation;
+using FinTechApplication.Services.Interface;
+using FinTechApplication.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+
 namespace FinTechApplication
 {
     public class Program
@@ -7,11 +22,55 @@ namespace FinTechApplication
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
 
+            // Add services to the container.
+            builder.Services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
+            builder.Services.Configure<JWTData>(configuration.GetSection(JWTData.Data));
             builder.Services.AddControllers();
+            builder.Services.AddIdentity<AppUser, IdentityRole>()
+                .AddUserStore<AppUser>();
+
+
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+            builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
+            builder.Services.AddScoped<IUserService, UserService>();
+
+            builder.Services.AddTransient<IAccountService, AccountService>();
+            builder.Services.AddTransient<ITransactionService, TransactionService>();
+
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            // add jwt authentication
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration.GetSection("JWTConfigurations:SecretKey").Value)),
+                    ValidateIssuer = true,
+                    ValidIssuer = configuration.GetSection("JWTConfigurations:Issuer").Value,
+                    ValidateAudience = true,
+                    ValidAudience = configuration.GetSection("JWTConfigurations:Audience").Value
+                };
+            });
 
             var app = builder.Build();
 
@@ -24,6 +83,7 @@ namespace FinTechApplication
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 
