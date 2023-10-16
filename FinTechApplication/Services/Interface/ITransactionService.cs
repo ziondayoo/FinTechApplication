@@ -1,4 +1,4 @@
-﻿namespace FinTechApplication.Services.Interfaces
+﻿namespace FinTechApplication.Services.Interface
 {
     public interface ITransactionService
     {

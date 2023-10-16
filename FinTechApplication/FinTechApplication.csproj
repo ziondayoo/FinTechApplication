@@ -7,15 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.23" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Infrastructure\Database\" />
-    <Folder Include="Infrastructure\Settings\" />
-    <Folder Include="Infrastructure\Repositories\" />
-    <Folder Include="Infrastructure\Security\" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.2" />
   </ItemGroup>
 
 </Project>
