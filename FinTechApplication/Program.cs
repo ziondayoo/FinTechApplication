@@ -27,11 +27,12 @@ namespace FinTechApplication
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            // Add services to the container.
-            builder.Services.AddDbContext<AppDbContext>(options =>
-            {
-                options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
-            });
+           // Add services to the container.
+           builder.Services.AddDbContext<AppDbContext>(options =>
+           {
+               options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+           });
+            //builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.Configure<JWTData>(configuration.GetSection(JWTData.Data));
             builder.Services.AddControllers();
             builder.Services.AddIdentity<AppUser, IdentityRole>()
