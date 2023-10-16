@@ -12,6 +12,10 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Infrastructure\Database\" />
+    <Folder Include="Infrastructure\Settings\" />
+    <Folder Include="Infrastructure\Repositories\" />
+    <Folder Include="Infrastructure\Security\" />
   </ItemGroup>
 
 </Project>
