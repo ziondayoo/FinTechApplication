@@ -1,12 +1,11 @@
-﻿using FinTechApplication.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
-using System.Net;
 
 namespace FinTechApplication.Models
 {
     public class AppUser : IdentityUser
     {
+
         [Required(ErrorMessage = "First Name is Required")]
         [MaxLength(250, ErrorMessage = "First Name can not be longer than 250 characters")]
         public string? FirstName { get; set; }
