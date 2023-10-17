@@ -3,12 +3,10 @@ using FinTechApplication.Infrastructure.Database;
 using FinTechApplication.Infrastructure.Repositories.Implementation;
 using FinTechApplication.Infrastructure.Repositories.Interface;
 using FinTechApplication.Infrastructure.Settings;
-using FinTechApplication.Models;
 using FinTechApplication.Services.Implementation;
 using FinTechApplication.Services.Interface;
 using FinTechApplication.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
