@@ -1,4 +1,4 @@
-﻿using FinTechApp.Infrastructure.Settings;
+﻿using FinTechApplication.Infrastructure.Settings;
 using FinTechApplication.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

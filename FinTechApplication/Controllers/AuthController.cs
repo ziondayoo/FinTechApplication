@@ -1,5 +1,5 @@
-﻿using FinTechApp.Infrastructure.Settings;
-using FinTechApplication.Infrastructure.Security;
+﻿using FinTechApplication.Infrastructure.Security;
+using FinTechApplication.Infrastructure.Settings;
 using FinTechApplication.Models;
 using FinTechApplication.Models.DTO;
 using FinTechApplication.Services.Interface;

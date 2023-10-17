@@ -1,4 +1,4 @@
-﻿namespace FinTechApp.Infrastructure.Settings
+﻿namespace FinTechApplication.Infrastructure.Settings
 {
     public class JWTData
     {

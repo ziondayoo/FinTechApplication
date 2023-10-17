@@ -3,7 +3,7 @@ using FinTechApplication.Models.DTO;
 using FinTechApplication.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FinTechApp.Controllers
+namespace FinTechApplication.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

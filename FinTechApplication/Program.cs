@@ -1,15 +1,12 @@
-using FinTechApp.Infrastructure.Settings;
-using FinTechApp.Services.Implementation;
 using FinTechApplication.Infrastructure;
 using FinTechApplication.Infrastructure.Database;
 using FinTechApplication.Infrastructure.Repositories.Implementation;
 using FinTechApplication.Infrastructure.Repositories.Interface;
-using FinTechApplication.Models;
+using FinTechApplication.Infrastructure.Settings;
 using FinTechApplication.Services.Implementation;
 using FinTechApplication.Services.Interface;
 using FinTechApplication.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
@@ -27,16 +24,24 @@ namespace FinTechApplication
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-           // Add services to the container.
-           builder.Services.AddDbContext<AppDbContext>(options =>
+            builder.Services.AddAuthentication();
+
+            // Add services to the container.
+            builder.Services.AddDbContext<AppDbContext>(options =>
            {
-               options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+               options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
            });
             //builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.Configure<JWTData>(configuration.GetSection(JWTData.Data));
             builder.Services.AddControllers();
-            builder.Services.AddIdentity<AppUser, IdentityRole>()
-                .AddUserStore<AppUser>();
+            //     var connectionString = builder.Configuration.GetConnectionString("connectionstring");
+            //builder.Services.AddDbContext<AppDbContext>(options =>
+            //options.UseSqlServer(connectionString));
+            //builder.Services.AddIdentity<AppUser, IdentityRole>()
+            //    .AddUserStore<AppUser>();
+            //    builder.Services.AddIdentity<AppUser, IdentityRole>()
+            //.AddEntityFrameworkStores<AppDbContext>()
+            //.AddDefaultTokenProviders();
 
 
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();

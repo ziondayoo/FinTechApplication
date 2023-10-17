@@ -5,17 +5,24 @@ namespace FinTechApplication.Infrastructure
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly AppDbContext _context;
 
-        public UnitOfWork(AppDbContext context)
+        private readonly AppDbContext _context;
+        public IUserRepository UserRepository { get; }
+
+        public IAccountRepository AccountRepository { get; }
+
+        public ITransactionRepository TransactionRepository { get; }
+
+
+
+        public UnitOfWork(AppDbContext context, IUserRepository userRepository, IAccountRepository accountRepository, ITransactionRepository transactionRepository)
         {
             _context = context;
+            UserRepository = userRepository;
+            AccountRepository = accountRepository;
+            TransactionRepository = transactionRepository;
+
         }
-        public IUserRepository UserRepository => throw new NotImplementedException();
-
-        public IAccountRepository AccountRepository => throw new NotImplementedException();
-
-        public ITransactionRepository TransactionRepository => throw new NotImplementedException();
 
         public async Task CommitAsync()
         {

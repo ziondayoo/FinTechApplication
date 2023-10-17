@@ -1,11 +1,8 @@
 ﻿using FinTechApplication.Infrastructure;
 using FinTechApplication.Models;
 using FinTechApplication.Services.Interface;
-using FinTechApplication.Infrastructure;
-using FinTechApplication.Models;
-using FinTechApplication.Services.Interface;
 
-namespace FinTechApp.Services.Implementation
+namespace FinTechApplication.Services.Implementation
 {
     public class UserService : IUserService
     {

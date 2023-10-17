@@ -1,7 +1,7 @@
-﻿using FinTechApplication.Models.DTO;
-using FinTechApplication.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using FinTechApplication.Models;
+using FinTechApplication.Models.DTO;
 using FinTechApplication.Services.Interface;
+using Microsoft.AspNetCore.Identity;
 
 namespace FinTechApplication.Services.Implementation
 {
